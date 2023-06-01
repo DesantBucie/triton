@@ -2,7 +2,7 @@
 
 ## Words of introduction
 
-Unlike normal Vim, this follows XDG which means:
+Unlike normal Vim, this follows XDG(if you don't have XDG variables set, defaults will be assigned) which means:
 * vimrc is in ~/.config/vim/vimrc
 * .vim is in ~/.local/share/vim/ etc.
 ## Instalation
@@ -21,7 +21,7 @@ Remember that vimrc uses vim9script, so his README examples won't work, [**read 
 For now, git clone them to ~/.local/share/vim/pack/triton/opt/ and `packadd <foldername>` in vimrc.
 
 * `:Packupdate` - for creating jobs that will update all plugins. Any changes will be reverted(git reset --hard)
-* `:Packlist` - to list plugins installed
+* `:Packlist` - list all plugins installed
 
 ## Keybindings
 

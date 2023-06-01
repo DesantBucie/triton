@@ -1,7 +1,13 @@
 vim9script
 
+if exists("g:loaded_example-plugin")
+    finish
+endif
+g:triton_main = 1
+
 import '../autoload/template.vim' as temp
 import '../autoload/pack_manage.vim' as pacman
+import '../autoload/path.vim'
 
 def g:DisableArrows()
 	noremap <Up> <Nop>
@@ -25,12 +31,21 @@ enddef
 def g:Main()
 
     set shortmess+=T
-    set viminfofile=$HOME/.local/share/vim/viminfo
+
+    if getenv("XDG_DATA_HOME") != ''
+        g:xdgData = getenv("XDG_DATA_HOME")
+        set viminfofile=$XDG_DATA_HOME/vim/viminfo
+    endif
     set backupdir=$HOME/.cache/vim/backup/
     set directory=$HOME/.cache/vim/swap/
     set undodir=$HOME/.cache/vim/undo/
+    if getenv("XDG_CACHE_HOME") != ''
+        g:xdgCache = getenv("XDG_CACHE_HOME")
+        set backupdir=$XDG_CACHE_HOME/vim/backup/
+        set directory=$XDG_CACHE_HOME/vim/swap/
+        set undodir=$XDG_CACHE_HOME/vim/undo/
+    endif
 
-    set guitablabel=%{GuiTabLabel()}
     set number
     set clipboard^=unnamed
     set autoindent

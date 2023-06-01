@@ -2,12 +2,17 @@ if !has("vim9script")
     echo "Error, vim9script not supported"
 endif
 vim9script
+var home = getenv("HOME")
+#import home .. '/.local/share/vim/pack/triton/opt/Triton/plugin/main.vim'
 
 filetype plugin indent on
 syntax on
 
 set runtimepath=$HOME/.local/share/vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.local/share/vim/after"
-
+set packpath-=~/.vim
+set packpath-=~/.vim/after
+set packpath+=$HOME/.local/share/vim
+packadd triton
 g:Main()
 
 ######## PERSONAL ADDITIONS BELOW ########
@@ -30,5 +35,5 @@ packadd lsp #well lsp
 #     args: ['--random-command']
 #    },
 #]
+#g:LspAddServer(lspServers)
 g:DisableArrows()
-g:LspAddServer(lspServers)
