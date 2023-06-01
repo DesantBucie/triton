@@ -3,6 +3,16 @@ vim9script
 import '../autoload/template.vim' as temp
 import '../autoload/pack_manage.vim' as pacman
 
+def g:DisableArrows()
+	noremap <Up> <Nop>
+	noremap <Down> <Nop>
+	noremap <Left> <Nop>
+	noremap <Right> <Nop>
+	noremap! <Up> <Nop>
+	noremap! <Down> <Nop>
+	noremap! <Left> <Nop>
+	noremap! <Right> <Nop>
+enddef
 def g:ToggleVExplorer()
     g:netrw_chgwin = winnr() + 1
     g:netrw_winsize = 30

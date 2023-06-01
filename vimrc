@@ -3,9 +3,6 @@ if !has("vim9script")
 endif
 vim9script
 
-var xdgData = getenv("XDG_DATA_HOME")
-import xdgData .. '/vim/main.vim'
-
 filetype plugin indent on
 syntax on
 
@@ -17,7 +14,6 @@ g:Main()
 
 ### Plugins ###
 packadd lsp #well lsp
-packadd noarrows #turns off arrows
 
 #use it as your template
 #var lspServers = [
@@ -34,6 +30,5 @@ packadd noarrows #turns off arrows
 #     args: ['--random-command']
 #    },
 #]
-
-g:LspAddServer(lspServers)
 g:DisableArrows()
+g:LspAddServer(lspServers)

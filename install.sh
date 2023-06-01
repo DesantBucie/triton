@@ -20,7 +20,7 @@ make_folder_if_doesnt_exist "$NVIM_CONFIG"
 make_folder_if_doesnt_exist "$NVIM_PLUGINS"
 
 cd "$CURRENT_PWD"
-cp init.lua "$NVIM_CONFIG" && echo COPYING init.lua
+cp vimrc "$NVIM_CONFIG" && echo COPYING vimrc
 cd ..
 cp -r "Triton" "$NVIM_PLUGINS" 
 cd "$NVIM_PLUGINS" || exit 127;
