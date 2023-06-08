@@ -1,6 +1,6 @@
 vim9script
 
-if exists("g:loaded_example-plugin")
+if exists("g:triton_main")
     finish
 endif
 g:triton_main = 1
@@ -45,6 +45,9 @@ def g:Main()
         set directory=$XDG_CACHE_HOME/vim/swap/
         set undodir=$XDG_CACHE_HOME/vim/undo/
     endif
+    if getenv("XDG_CONFIG_HOME") != ''
+        g:xdgConfig = getenv("XDG_CONFIG_HOME")
+    endif
 
     set number
     set clipboard^=unnamed
@@ -70,8 +73,6 @@ def g:Main()
     set nowb
 
     command! -nargs=0 -bar Template temp.Template()
-    command! -nargs=0 -bar Packlist pacman.PackList()
-    command! -nargs=0 -bar Packupdate pacman.PackUpdate()
 
     map <leader>n :call ToggleVExplorer()<CR>
     map <leader>t :tabe<CR>
