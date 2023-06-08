@@ -23,7 +23,7 @@ Remember that vimrc uses vim9script, so his README examples won't work, [**read 
 
 ## Plugin management
 
-* `:Packinstall <url>` - for downloading the plugin. It will not be used, until you put `packadd <packageName>` to vimrc_. [^Look why]
+* `:Packinstall <url>` - for downloading the plugin. It will not be used, until you put `packadd <packageName>` to vimrc_. [^1]
 * `:Packupdate` - for creating jobs that will update all plugins. Any changes will be reverted(git reset --hard).
 * `:Packlist` - list all plugins installed.
 * `:Packdelete <name>` - removes plugin.
@@ -44,4 +44,4 @@ The leader key can be different depending on system. For me it's `\`. You can cu
 
 ![Esc](https://raw.github.com/DesantBucie/DesantBucie/master/easy.nvim/esc.gif)
 
-[^Look why]: For now i have no (good) idea how to automate the process and most of plugins need configuration anyway. Also you may want to decide to load plugin only when special conditions are met like opening a file with certain extension.
+[^1]: For now i have no (good) idea how to automate the process and most of plugins need configuration anyway. Also you may want to decide to load plugin only when special conditions are met like opening a file with certain extension.
