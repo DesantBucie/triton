@@ -11,7 +11,7 @@ def PackUpdateErrHandler(ch: channel, msg: string)
 enddef
 
 def PackUpdateOnExitInfo(ch: channel)
-    echow "Plugins updated (or nothing to do)"
+    echo "Plugins updated (or nothing to do)"
 enddef
 
 def PackInstallErrHandler(ch: channel, msg: string)
@@ -43,7 +43,7 @@ export def PackInstall(url: string)
         commandblock[2] = 'git clone ' .. url .. ' --quiet ' .. plugins .. dir
         var job = job_start(commandblock, { "out_io": "null", "err_cb": "PackInstallErrHandler", "close_cb": "PackInstallOnExit"})
     else
-        echow "Plugin already installed"
+        echo "Plugin already installed"
     endif
 enddef
 
@@ -52,7 +52,7 @@ export def PackUpdate()
     dirs = filter(dirs, "isdirectory(v:val)")
     for i in dirs
         if !empty(glob(expand(i .. "/.git")))
-            commandblock[2] = 'git reset --hard --quiet; git pull origin `git  rev-parse --abbrev-ref HEAD` --quiet'
+            commandblock[2] = 'git -C ' .. i .. ' reset --hard --quiet; git -C ' .. i .. ' pull origin `git -C ' .. i .. '  rev-parse --abbrev-ref HEAD` --quiet'
             var job = job_start(commandblock, {"out_io": "null", "err_cb": "PackUpdateErrHandler", "close_cb": "PackUpdateOnExitInfo"})
         endif
     endfor
@@ -80,7 +80,7 @@ def PackDelete(arg: string)
             return
         endif
     else
-        echow "Folder does not exist"
+        echo "Folder does not exist"
         return
     endif
 enddef
