@@ -4,7 +4,6 @@ endif
 vim9script
 var home = getenv("HOME")
 #import home .. '/.local/share/vim/pack/triton/opt/Triton/plugin/main.vim'
-
 filetype plugin indent on
 syntax on
 

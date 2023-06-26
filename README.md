@@ -35,7 +35,9 @@ The leader key can be different depending on system. For me it's `\`. You can cu
 * <leader> + n - directory explorer 
 * <leader> + t - new tab
 * <leader> + s - vertical split
-* <Tab> - move between workplaces
+* <Ctrl> + w - switch splits
+* <Tab> - When completion window is visible, goes down in completion list
+* <Shift-Tab> - When completion window is visible goes up in completion list
 * :Template - load template if avaliable.
 
 ## Advices

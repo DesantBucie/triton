@@ -59,7 +59,6 @@ def g:Main()
     set smartcase
     set showmatch
     set ignorecase
-    set autochdir
     set mouse=a
     set belloff=all
     set ruler
@@ -77,6 +76,8 @@ def g:Main()
     map <leader>n :call ToggleVExplorer()<CR>
     map <leader>t :tabe<CR>
     map <leader>s :vs<CR>
-    noremap <tab> <C-w>w
+    noremap <C-w> <C-w>w
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 enddef
 
