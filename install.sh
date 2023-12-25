@@ -1,7 +1,7 @@
 #!/bin/sh
 CURRENT_PWD="$PWD"
 if [ -z "$XDG_CONFIG_HOME" ]; then
-    VIM_CONFIG="$HOME/.config/vim"
+    VIM_CONFIG="$HOME/vim"
 else
     VIM_CONFIG="$XDG_CONFIG_HOME/vim"
 fi
@@ -16,7 +16,9 @@ else
     VIM_CACHE="$XDG_CACHE_HOME/vim"
 fi
 
-VIM_PLUGINS="$VIM_HOME/pack/triton/opt"
+VIM_PLUGINS="$VIM_HOME/pack/triton/start"
+VIM_OPT="$VIM_HOME/pack/triton/opt"
+VIM_UNLOADED="$VIM_HOME/pack/triton/unloaded"
 
 echo "Vim plugins: $VIM_PLUGINS"
 echo "Vim cache: $VIM_CACHE"
@@ -33,6 +35,8 @@ make_folder_if_doesnt_exist() {
 
 make_folder_if_doesnt_exist "$VIM_CONFIG"
 make_folder_if_doesnt_exist "$VIM_PLUGINS"
+make_folder_if_doesnt_exist "$VIM_OPT"
+make_folder_if_doesnt_exist "$VIM_UNLOADED"
 make_folder_if_doesnt_exist "$VIM_CACHE/backup"
 make_folder_if_doesnt_exist "$VIM_CACHE/undo"
 make_folder_if_doesnt_exist "$VIM_CACHE/swap"
@@ -40,8 +44,8 @@ make_folder_if_doesnt_exist "$VIM_CACHE/swap"
 cd "$CURRENT_PWD" || exit 127
 cp vimrc "$VIM_CONFIG" && echo COPYING vimrc
 cd ..
-cp -r "triton" "$VIM_PLUGINS" 
-cd "$VIM_PLUGINS" || exit 127;
+cp -r "triton" "$VIM_OPT" 
+cd "$VIM_OPT" || exit 127;
 git clone https://github.com/yegappan/lsp --quiet
 echo "Now you need to install language servers on your behalf."
 echo "Best you check yourself: https://github.com/yegappan/lsp"

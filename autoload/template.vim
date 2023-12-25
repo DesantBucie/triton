@@ -2,7 +2,7 @@ vim9script
 
 import './path.vim'
 
-export def Template()
+def Template()
     var lang = expand('%:e')
     var check_file = g:xdgData .. "/vim/pack/triton/opt/Triton/templates/" .. lang .. ".template"
     if filereadable(check_file)
@@ -11,3 +11,5 @@ export def Template()
         echo "Template doesn't exist"
     endif
 enddef
+
+command! -nargs=0 -bar Template Template()

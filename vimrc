@@ -12,12 +12,12 @@ set packpath-=~/.vim
 set packpath-=~/.vim/after
 set packpath+=$HOME/.local/share/vim
 packadd triton
+packadd lsp
 g:Main()
 
 ######## PERSONAL ADDITIONS BELOW ########
 
 ### Plugins ###
-packadd lsp #well lsp
 
 #use it as your template
 #var lspServers = [

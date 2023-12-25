@@ -71,8 +71,6 @@ def g:Main()
     set nobackup
     set nowb
 
-    command! -nargs=0 -bar Template temp.Template()
-
     map <leader>n :call ToggleVExplorer()<CR>
     map <leader>t :tabe<CR>
     map <leader>s :vs<CR>
