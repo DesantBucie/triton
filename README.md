@@ -58,6 +58,13 @@ The leader key can be different depending on system. For me it's `\`. You can cu
 * \<Shift-Tab> - When completion window is visible goes up in completion list
 * :Template - load template if avaliable.
 
+## Features to turn on/off in vimrc
+
+To turn on just paste function name to vimrc
+
+* g:DisableArrows() - disables arrows, on by default
+* g:AutoPairs() - simple autopairing.
+
 ## Advices
 
 * Bind ESC to Caps-Lock, for example on mac:

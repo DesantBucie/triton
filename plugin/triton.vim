@@ -8,6 +8,7 @@ g:triton_main = 1
 import '../autoload/template.vim' as temp
 import '../autoload/pack_manage.vim' as pacman
 import '../autoload/path.vim'
+import '../autoload/autopairs.vim'
 
 def g:DisableArrows()
 	noremap <Up> <Nop>
@@ -19,6 +20,7 @@ def g:DisableArrows()
 	noremap! <Left> <Nop>
 	noremap! <Right> <Nop>
 enddef
+
 def g:ToggleVExplorer()
     g:netrw_chgwin = winnr() + 1
     g:netrw_winsize = 30
@@ -49,6 +51,7 @@ def g:Main()
         g:xdgConfig = getenv("XDG_CONFIG_HOME")
     endif
 
+    set wildmenu
     set number
     set clipboard^=unnamed
     set autoindent
@@ -77,5 +80,10 @@ def g:Main()
     noremap <C-w> <C-w>w
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+    augroup LspCustom
+      au!
+      au CursorMoved * silent! LspDiagCurrent
+    augroup END
 enddef
 

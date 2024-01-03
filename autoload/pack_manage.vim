@@ -20,7 +20,8 @@ def PackInstallErrHandler(ch: channel, msg: string)
 enddef
 
 def PackInstallOnExit(ch: channel)
-    echo "Package installed, now use packadd in vimrc to use it."    
+    echo "Package installed."    
+    packloadall
 enddef
 
 def PackDeleteOnExit(ch: channel)
@@ -50,7 +51,6 @@ def PackInstall(url: string)
     if empty(glob(expand(plugins .. dir)))
         commandblock[2] = 'git clone ' .. url .. ' --quiet ' .. plugins .. dir
         var job = job_start(commandblock, { "out_io": "null", "err_cb": "PackInstallErrHandler", "close_cb": "PackInstallOnExit"})
-        packloadall
     else
         echo "Plugin already installed"
     endif
