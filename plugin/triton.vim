@@ -34,20 +34,21 @@ def g:Main()
 
     set shortmess+=T
 
-    if getenv("XDG_DATA_HOME") != ''
+    if getenv("XDG_DATA_HOME") != null
         g:xdgData = getenv("XDG_DATA_HOME")
         set viminfofile=$XDG_DATA_HOME/vim/viminfo
     endif
-    set backupdir=$HOME/.cache/vim/backup/
-    set directory=$HOME/.cache/vim/swap/
-    set undodir=$HOME/.cache/vim/undo/
-    if getenv("XDG_CACHE_HOME") != ''
+    if getenv("XDG_CACHE_HOME") != null
         g:xdgCache = getenv("XDG_CACHE_HOME")
         set backupdir=$XDG_CACHE_HOME/vim/backup/
         set directory=$XDG_CACHE_HOME/vim/swap/
         set undodir=$XDG_CACHE_HOME/vim/undo/
+    else
+        set backupdir=$HOME/.cache/vim/backup/
+        set directory=$HOME/.cache/vim/swap/
+        set undodir=$HOME/.cache/vim/undo/
     endif
-    if getenv("XDG_CONFIG_HOME") != ''
+    if getenv("XDG_CONFIG_HOME") != null
         g:xdgConfig = getenv("XDG_CONFIG_HOME")
     endif
 
@@ -73,6 +74,7 @@ def g:Main()
     set noswapfile
     set nobackup
     set nowb
+    set smoothscroll
 
     map <leader>n :call ToggleVExplorer()<CR>
     map <leader>t :tabe<CR>
@@ -83,7 +85,7 @@ def g:Main()
 
     augroup LspCustom
       au!
-      au CursorMoved * silent! LspDiagCurrent
+      au CursorMoved * silent! LspDiag current
     augroup END
 enddef
 

@@ -6,10 +6,15 @@ vim9script
 filetype plugin indent on
 syntax on
 
-set runtimepath=$HOME/.local/share/vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.local/share/vim/after"
+
+if getenv("XDG_DATA_HOME") != null
+    set packpath+=$XDG_DATA_HOME/vim
+else
+    set packpath+=$HOME/.local/share/vim
+endif
 set packpath-=~/.vim
 set packpath-=~/.vim/after
-set packpath+=$HOME/.local/share/vim
+
 packadd triton
 packadd lsp
 g:Main()

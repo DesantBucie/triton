@@ -1,23 +1,12 @@
-
 # Triton
 
-## Words of introduction
+## Just in case
 
 Only tested on macOS for now.
 
-Unlike normal Vim, this follows XDG(if you don't have XDG variables set, defaults will be assigned) which means:
+.vim folder is located in $XDG\_DATA\_HOME system variable (~/.local/share/vim by default) instead of ~/.vim
 
-* .vim is in ~/.local/share/vim/ etc.
-
-**and possibly**
-
-* vimrc is in ~/.config/vim/vimrc
-
-To make this work add this line to your .profile(or .bash\_profile, .zsh\_profile etc.) to have .vimrc in .config/vim/vimrc:
-
- `export VIMINIT='let $MYVIMRC="$HOME/.config/vim/vimrc" | source $MYVIMRC'`
-
-***YOU CAN IGNORE THIS and vimrc will stay in `~`,  but .vim will be in `~/.local/share/vim`***
+Want custom .vimrc location? [^2]
 
 ## Instalation
 
@@ -33,7 +22,7 @@ Then delete repository.
 
 This supports LSP via lsp plugin from [yegappan](https://github.com/yegappan/lsp). You have a template how do add LSP server in vimrc.
 
-Remember that vimrc uses vim9script, so his README examples won't work, [**read doc/lsp.txt instead.**](https://github.com/yegappan/lsp/blob/main/doc/lsp.txt) Also servers not mentioned in docs should work, you can use nvim-lspconfig for help. And don't forget about installing [LSP server](https://microsoft.github.io/language-server-protocol/implementors/servers/). 
+Remember that vimrc uses vim9script, so his README examples won't work, [**read doc/lsp.txt instead.**](https://github.com/yegappan/lsp/blob/main/doc/lsp.txt) Servers not mentioned in docs should work, you can use [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) for help. And don't forget about installing [LSP server](https://microsoft.github.io/language-server-protocol/implementors/servers/). 
 
 ## Plugin management
 
@@ -63,7 +52,7 @@ The leader key can be different depending on system. For me it's `\`. You can cu
 To turn on just paste function name to vimrc
 
 * g:DisableArrows() - disables arrows, on by default
-* g:AutoPairs() - simple autopairing.
+* g:AutoPairs() - simple autopairing, to be extended.
 
 ## Advices
 
@@ -78,3 +67,5 @@ Delete .vimrc and ~/.local/share/vim/pack/triton
 
 [^1]: then you'll need to put plugin to ~/.local/share/vim/pack/triton/opt/<pluginname> and
 load it under some circumstances with packadd. More on that you'll find on stack overflow. I assume 99% of times you won't care.
+
+[^2]: Put this `export VIMINIT='let $MYVIMRC="<location>/vimrc" | source $MYVIMRC'` in your .bash\_profile, .zsh\_profile, or whatever init file you are using

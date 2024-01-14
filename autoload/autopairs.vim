@@ -2,12 +2,9 @@ vim9script
 var pairs: dict<string> = { 
     "{": "}", 
     "[": "]", 
-    "(": ")", 
-    "<": ">" }
+    "(": ")"}
 
 var singles = ["'", '"', '`']
-
-
 
 def g:AutoPairsWPrevention(ascii_num: number): string
     var key = nr2char(ascii_num)
@@ -22,14 +19,27 @@ def g:AutoPairsWPrevention(ascii_num: number): string
     return key
 enddef
 
+def IsAlpha(char: string): bool
+    var ascii = char2nr(char)
+    echo ascii
+    g:res = (ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122)
+    return g:res
+enddef
+
 def g:AutoPairsSingles(ascii_num: number): string
+
     var key = nr2char(ascii_num)
 
+    #char under cursor
     var ch = getline('.')[charcol('.') - 1] 
+    #char left of the cursor
+    var ch2 = getline('.')[charcol('.') - 2]
 
-    if key != ch
+    if key != ch && !IsAlpha(ch2)
         return key .. key .. "\<Left>"
-    else 
+    elseif IsAlpha(ch2)
+        return key
+    else
         return "\<Right>"
     endif
 enddef

@@ -1,10 +1,6 @@
 #!/bin/sh
 CURRENT_PWD="$PWD"
-if [ -z "$XDG_CONFIG_HOME" ]; then
-    VIM_CONFIG="$HOME/vim"
-else
-    VIM_CONFIG="$XDG_CONFIG_HOME/vim"
-fi
+
 if [ -z "$XDG_DATA_HOME" ]; then
     VIM_HOME="$HOME/.local/share/vim"
 else
@@ -42,7 +38,7 @@ make_folder_if_doesnt_exist "$VIM_CACHE/undo"
 make_folder_if_doesnt_exist "$VIM_CACHE/swap"
 
 cd "$CURRENT_PWD" || exit 127
-cp vimrc "$VIM_CONFIG" && echo COPYING vimrc
+cp vimrc ~/.vimrc
 cd ..
 cp -r "triton" "$VIM_OPT" 
 cd "$VIM_OPT" || exit 127;
