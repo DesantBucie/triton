@@ -33,7 +33,8 @@ enddef
 def g:Main()
 
     set shortmess+=T
-
+    set runtimepath-=$HOME/.vim
+    set runtimepath-=$HOME/.vim/after
     if getenv("XDG_DATA_HOME") != null
         g:xdgData = getenv("XDG_DATA_HOME")
         set viminfofile=$XDG_DATA_HOME/vim/viminfo
@@ -43,6 +44,7 @@ def g:Main()
         set backupdir=$XDG_CACHE_HOME/vim/backup/
         set directory=$XDG_CACHE_HOME/vim/swap/
         set undodir=$XDG_CACHE_HOME/vim/undo/
+        g:netrw_home = getenv("XDG_CACHE_HOME") .. "/vim/"
     else
         set backupdir=$HOME/.cache/vim/backup/
         set directory=$HOME/.cache/vim/swap/
@@ -75,6 +77,7 @@ def g:Main()
     set nobackup
     set nowb
     set smoothscroll
+    set linebreak
 
     map <leader>n :call ToggleVExplorer()<CR>
     map <leader>t :tabe<CR>
