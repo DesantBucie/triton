@@ -3,8 +3,8 @@ vim9script
 var plugins = g:xdgData .. "/vim/pack/triton/start/"
 var unloaded = g:xdgData .. "/vim/pack/triton/unloaded/"
 var tritons = g:xdgData .. "vim/pack/trition/opt/"
-#Always start job with sh -c or thing doesn't work :v
-var commandblock = [ 'sh', '-c', '']
+
+var commandblock = [ &shell, &shellcmdflag, '']
 
 ##### HANDLERS
 def PackUpdateErrHandler(ch: channel, msg: string)
@@ -16,7 +16,11 @@ def PackUpdateOnExitInfo(ch: channel)
 enddef
 
 def PackInstallErrHandler(ch: channel, msg: string)
-    echoerr msg
+    echoerr "Install failed: " .. msg
+enddef
+
+def PackDeleteErrHandler(ch: channel, msg: string)
+    echoerr "Delete failed: " .. msg
 enddef
 
 def PackInstallOnExit(ch: channel)
@@ -103,7 +107,7 @@ def PackDelete(arg: string)
             \ "&Yes\n&No")
     if choice == 1
         commandblock[2] = 'rm -rf ' .. plugins .. arg
-        var job = job_start(commandblock, { "out_io": "null", "err_io": "null", "close_cb": "PackDeleteOnExit"})
+        var job = job_start(commandblock, { "out_io": "null", "err_io": "PackDeleteErrHandler", "close_cb": "PackDeleteOnExit"})
     else
         return
     endif

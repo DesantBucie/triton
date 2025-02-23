@@ -19,7 +19,7 @@ VIM_UNLOADED="$VIM_HOME/pack/triton/unloaded"
 echo "Vim plugins: $VIM_PLUGINS"
 echo "Vim cache: $VIM_CACHE"
 echo "Vim data: $VIM_HOME"
-! type git && echo "No git installed" && exit 127
+! type git && echo "No git installed, aborting." && exit 127
 
 make_folder_if_doesnt_exist() {
     if [ ! -d "$1" ]; then
